@@ -2,6 +2,38 @@ var {expect} = require('chai');
 var {Shop, Item} = require('../src/gilded_rose.js');
 describe("Gilded Rose", function() {
 
+  describe("quality", function() {
+    context("when it is above 0", function() {
+      it("decreases by 1", function() {
+        const testItem = new Item("testItem", 10, 20);
+        const shop = new Shop([testItem]);
+        shop.updateQuality();
+
+        expect(shop.items[0].quality).to.equal(19);
+      });
+    });
+
+    context("when it is 0 and updateQuality is executed", function() {
+      it("is never negative", function() {
+        const testItem = new Item("testItem", 10, 0);
+        const shop = new Shop([testItem]);
+        shop.updateQuality();
+  
+        expect(shop.items[0].quality).to.equal(0);
+      });
+    });
+
+    context("when sellIn is 0", function() {
+      it("quality degrades by 2", function() {
+        const testItem = new Item("testItem", 0, 10);
+        const shop = new Shop([testItem]);
+        shop.updateQuality();
+
+        expect(shop.items[0].quality).to.equal(8);
+      });
+    });
+  });
+
   describe("Aged Brie", function() {
 
     it("quality increases with age", function() {
