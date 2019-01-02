@@ -23,4 +23,14 @@ describe("Gilded Rose", function() {
 
   });
 
+  describe("Sulfuras, Hand of Ragnaros", function() {
+    it("doesn't decrease in quality", function() {
+      const sulfuras = new Item("Sulfuras, Hand of Ragnaros", 100, 50);
+      const shop = new Shop([sulfuras]);
+      shop.updateQuality();
+
+      expect(shop.items[0].quality).to.equal(50);
+    });
+  });
+
 });
