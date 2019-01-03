@@ -50,7 +50,7 @@ class Shop {
               }
             }
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            this.decreaseQuality(this.items[i], this.items[i].quality);
           }
         } else {
           if (this.items[i].quality < this.returnMaximumQuality()) {
