@@ -39,7 +39,7 @@ class Shop {
         }
       }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.decreaseSellIn(this.items[i]);
       }
       if (this.isExpired(this.items[i])) {
         if (this.items[i].name != 'Aged Brie') {
@@ -81,6 +81,10 @@ class Shop {
 
   isExpired(item) {
     return item.sellIn < this.expiry;
+  }
+
+  decreaseSellIn(item, num = 1) {
+    item.sellIn -= num;
   }
 }
 module.exports = {
